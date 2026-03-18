@@ -1,0 +1,19 @@
+# Archivos de auditoría y pruebas temporales creados durante el desarrollo
+test_cats.php
+audit.php
+
+# Opcional: Si se migra a Base de Datos en el futuro, excluir la carpeta del export estático
+BD_Worpress/
+
+# Archivos del Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de Entornos de Desarrollo (IDEs)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
