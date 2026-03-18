@@ -1,0 +1,40 @@
+# Tokyo Tunning - Web Minimalista Agresiva
+
+Sitio web completo para taller especializado en tuning automotriz premium.
+
+## Stack Tecnológico
+
+- HTML5 Semántico
+- PHP (para includes y variables básicas)
+- Tailwind CSS vía CDN
+- Font Awesome 6 vía CDN
+- Google Fonts (Oswald, Roboto)
+- CSS Puro (sin JavaScript, interacciones mobile resueltas con CSS hack)
+
+## Estructura de Archivos
+
+```
+├── index.php         (Página principal y presentación de marca)
+├── servicios.php     (Detalle de los servicios ofrecidos)
+├── catalogo.php      (Catálogo de productos para venta directa)
+├── contacto.php      (Formulario de contacto e información de ubicación)
+├── includes/
+│   ├── header.php    (Cabecera común)
+│   └── footer.php    (Pie de página común)
+├── assets/
+│   └── img/          (Imágenes del sitio)
+├── .htaccess         (Reglas de reescritura de URLs limpias)
+└── README.md         (Documentación)
+```
+
+## Instrucciones de Instalación/Deploy
+
+1. Sube todos los archivos a un servidor web con soporte PHP (Apache recomendado).
+2. Asegúrate de que el módulo `mod_rewrite` de Apache esté activado para que el archivo `.htaccess` funcione (permite usar URLs limpias como `/servicios` en vez de `/servicios.php`).
+3. La carpeta de imágenes `assets/img/` debe contener las imágenes referenciadas en el código.
+
+## Notas sobre Personalización
+
+- Los colores principales están configurados en el objeto `tailwind.config` dentro de `includes/header.php`.
+- La clase `.hover-grayscale` es fundamental para el efecto visual requerido en las imágenes.
+- El menú móvil se construyó usando el "*Checkbox Hack*" de CSS puramente, sin requerir JS.
