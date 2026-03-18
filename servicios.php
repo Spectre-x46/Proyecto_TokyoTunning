@@ -7,7 +7,7 @@ include 'includes/header.php';
 <!-- 1. HERO SECTION -->
 <section class="relative h-[50vh] flex items-center justify-center overflow-hidden bg-dark">
     <div class="absolute inset-0 z-0">
-        <img src="assets/img/hero-servicios.jpg" alt="Servicios Tokyo Tunning" class="w-full h-full object-cover object-center opacity-40">
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1920" alt="Servicios Tokyo Tunning" class="w-full h-full object-cover object-center opacity-40">
         <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
     </div>
     
@@ -110,8 +110,8 @@ include 'includes/header.php';
             
             <div class="lg:w-1/2 w-full">
                 <div class="grid grid-cols-2 gap-4">
-                    <img src="assets/img/performance-1.jpg" alt="Dyno testing" class="w-full h-48 md:h-64 object-cover border-2 border-gray-800 hover:border-accent transition-smooth">
-                    <img src="assets/img/performance-2.jpg" alt="ECU tuning" class="w-full h-48 md:h-64 object-cover border-2 border-gray-800 hover:border-accent transition-smooth mt-8">
+                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=800" alt="Dyno testing" class="w-full h-48 md:h-64 object-cover border-2 border-gray-800 hover:border-accent transition-smooth">
+                    <img src="https://images.unsplash.com/photo-1622353344332-6a4a15efb5fd?auto=format&fit=crop&q=80&w=800" alt="ECU tuning" class="w-full h-48 md:h-64 object-cover border-2 border-gray-800 hover:border-accent transition-smooth mt-8">
                 </div>
             </div>
         </div>

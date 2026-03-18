@@ -66,8 +66,8 @@ $current_page = $current_page ?? 'inicio';
     <div class="container mx-auto px-4 lg:px-8">
         <div class="flex justify-between items-center h-20">
             <!-- Logo -->
-            <a href="index.php" class="text-3xl font-oswald font-bold tracking-wider text-white">
-                TOKYO <span class="text-accent">TUNNING</span>
+            <a href="index.php" class="flex items-center bg-white/5 hover:bg-white/10 transition-colors duration-300 rounded-lg px-3 py-1 border border-white/10 shadow-sm backdrop-blur-sm">
+                <img src="assets/img/TokyoTunning_LogoSinfondo.png" alt="Tokyo Tunning Logo" class="h-12 md:h-16 w-auto object-contain">
             </a>
             
             <!-- Desktop Nav -->

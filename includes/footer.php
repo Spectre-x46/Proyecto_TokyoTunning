@@ -6,8 +6,8 @@
             
             <!-- Col 1: Logo & Desc -->
             <div>
-                <a href="index.php" class="text-3xl font-oswald font-bold tracking-wider text-white block mb-6">
-                    TOKYO <span class="text-accent">TUNNING</span>
+                <a href="index.php" class="inline-block mb-6 bg-white/5 hover:bg-white/10 transition-colors duration-300 rounded-lg px-4 py-2 border border-white/10 shadow-sm backdrop-blur-sm">
+                    <img src="assets/img/TokyoTunning_LogoSinfondo.png" alt="Tokyo Tunning Logo" class="h-16 md:h-20 w-auto object-contain">
                 </a>
                 <p class="mb-6 leading-relaxed">
                     Taller especializado en tuning automotriz premium. Elevamos el rendimiento y la estética de tu vehículo al siguiente nivel con piezas de alta competencia y mano de obra experta.

@@ -7,7 +7,7 @@ include 'includes/header.php';
 <!-- 1. HERO SECTION -->
 <section class="relative h-[40vh] flex items-center justify-center overflow-hidden bg-dark border-b-4 border-transparent" style="border-image: linear-gradient(to right, #C41E3A, #D4A847) 1;">
     <div class="absolute inset-0 z-0">
-        <img src="assets/img/hero-contacto.jpg" alt="Contacto Tokyo Tunning" class="w-full h-full object-cover object-center opacity-40">
+        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=1920" alt="Contacto Tokyo Tunning" class="w-full h-full object-cover object-center opacity-40">
         <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
     </div>
     
@@ -15,6 +15,29 @@ include 'includes/header.php';
         <h1 class="text-5xl md:text-6xl font-oswald font-bold text-white tracking-wider uppercase">
             <span class="text-primary">Contacta</span> a los Expertos
         </h1>
+    </div>
+</section>
+
+<!-- 2. CONTENIDO (2 Columnas) -->
+<section class="py-24 bg-gray-50 text-dark relative">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="text-primary font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Excelencia en Mantenimiento y Optimización Automotriz</p>
+                <h2 class="text-4xl md:text-5xl font-oswald font-bold mb-8 uppercase leading-tight">Su taller de confianza especializado en mecánica ágil y equipamiento.</h2>
+                <p class="mb-6">En Tokyo Tunning, gestionamos el cuidado de su vehículo con precisión técnica y un enfoque en la eficiencia. Nos especializamos en servicios de mantenimiento preventivo y mejoras estéticas, asegurando que cada intervención cumpla con los más altos estándares de calidad y seguridad.</p>
+                <ul class="list-disc pl-5 mb-6">
+                    <li><strong>Mantenimiento Preventivo:</strong> Cambio de aceite, sustitución de filtros y optimización del sistema de refrigeración.</li>
+                    <li><strong>Tren Delantero y Suspensión:</strong> Diagnóstico y reemplazo de bandejas, cazoletas y amortiguadores.</li>
+                    <li><strong>Seguridad Activa:</strong> Renovación de pastillas de freno y revisión integral de sistemas de frenado.</li>
+                    <li><strong>Dinámica de Conducción:</strong> Servicios especializados de alineación y balanceo computarizado.</li>
+                    <li><strong>Equipamiento de Confort:</strong> Venta e instalación de sistemas de audio y accesorios de personalización.</li>
+                </ul>
+                <p class="text-primary font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Trayectoria y Resultados</p>
+                <p class="text-lg font-roboto">3 Años de experiencia en el sector automotriz.</p>
+                <p class="text-lg font-roboto">+500 Proyectos finalizados con éxito.</p>
+            </div>
+        </div>
     </div>
 </section>
 
