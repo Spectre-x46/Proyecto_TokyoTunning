@@ -5,6 +5,9 @@ audit.php
 # Opcional: Si se migra a Base de Datos en el futuro, excluir la carpeta del export estático
 BD_Worpress/
 
+# Carpeta de entorno local confidencial
+tokyotunning-local/
+
 # Archivos del Sistema Operativo
 .DS_Store
 Thumbs.db
