@@ -87,7 +87,8 @@ if (file_exists($csvFile) && ($handle = fopen($csvFile, "r")) !== FALSE) {
                 'precio_num' => $precio_num,
                 'img' => $img,
                 'desc' => $desc,
-                'tipo' => $tipo
+                'tipo' => $tipo,
+                'cat_count' => 0, // se rellena después
             ];
             $total_productos++;
         }
@@ -97,7 +98,17 @@ if (file_exists($csvFile) && ($handle = fopen($csvFile, "r")) !== FALSE) {
 
 // Variables HTML GET para filtros 'sin JS'
 $filtro_cat = isset($_GET['cat']) ? $_GET['cat'] : 'all';
-$filtro_sort = isset($_GET['sort']) ? $_GET['sort'] : 'destacados';
+$filtro_sort = isset($_GET['sort']) ? $_GET['sort'] : 'popularity';
+
+// Inyectar cat_count para badge de popularidad
+foreach($productos_importados as &$p) {
+    $p['cat_count'] = $categorias_set[$p['cat']] ?? 0;
+}
+unset($p);
+
+// Detectar top categorías (top-sellers = categorías con más productos)
+arsort($categorias_set);
+$top_cats = array_keys(array_slice($categorias_set, 0, 3, true));
 
 // Aplicar Filtro Categorías
 $productos_mostrados = [];
@@ -108,7 +119,13 @@ foreach($productos_importados as $p) {
 }
 
 // Aplicar Filtro Ordenamiento
-if ($filtro_sort === 'price_asc') {
+if ($filtro_sort === 'popularity') {
+    // Más vendido: primero los de categorías con mayor volumen, luego precio asc
+    usort($productos_mostrados, function($a, $b) {
+        if ($b['cat_count'] !== $a['cat_count']) return $b['cat_count'] <=> $a['cat_count'];
+        return $a['precio_num'] <=> $b['precio_num'];
+    });
+} else if ($filtro_sort === 'price_asc') {
     usort($productos_mostrados, function($a, $b) { 
         return $a['precio_num'] <=> $b['precio_num'];
     });
@@ -191,6 +208,12 @@ if ($filtro_sort === 'price_asc') {
                     <div class="mb-4">
                         <h3 class="font-roboto font-bold mb-3 text-gray-800">Ordenar</h3>
                         <div class="space-y-3 text-sm font-roboto text-gray-600 flex flex-col">
+                            <a href="catalogo.php?cat=<?= urlencode($filtro_cat) ?>&sort=popularity" class="flex items-center space-x-2 cursor-pointer <?= ($filtro_sort === 'popularity') ? 'text-primary font-bold' : 'hover:text-primary' ?>">
+                                <div class="w-4 h-4 rounded border border-gray-400 flex items-center justify-center p-[2px]">
+                                    <?= ($filtro_sort === 'popularity') ? '<div class="w-full h-full bg-primary"></div>' : '' ?>
+                                </div>
+                                <span>⭐ Más Vendidos</span>
+                            </a>
                             <a href="catalogo.php?cat=<?= urlencode($filtro_cat) ?>&sort=destacados" class="flex items-center space-x-2 cursor-pointer <?= ($filtro_sort === 'destacados') ? 'text-primary font-bold' : 'hover:text-primary' ?>">
                                 <div class="w-4 h-4 rounded border border-gray-400 flex items-center justify-center p-[2px]">
                                     <?= ($filtro_sort === 'destacados') ? '<div class="w-full h-full bg-primary"></div>' : '' ?>
@@ -242,34 +265,41 @@ if ($filtro_sort === 'price_asc') {
                     <?php else: ?>
                         <?php foreach($productos_mostrados as $p): ?>
                             <!-- Tarjeta Producto -->
-                            <div class="bg-white group overflow-hidden border border-gray-100 hover:shadow-xl hover:border-accent transition-all duration-300 flex flex-col h-full relative">
+                        <div class="bg-white group overflow-hidden border border-gray-100 hover:shadow-xl hover:border-primary transition-all duration-300 flex flex-col h-full relative">
+                                <!-- Badge Más Vendido -->
+                                <?php if(in_array($p['cat'], $top_cats)): ?>
+                                <div class="absolute top-3 right-3 bg-primary text-white text-[9px] font-bold font-oswald px-2 py-1 uppercase tracking-wider z-10 shadow-md">
+                                    ⭐ Más Vendido
+                                </div>
+                                <?php endif; ?>
                                 <!-- Label Categoría -->
-                                <div class="absolute top-3 left-3 bg-dark text-white text-[10px] uppercase font-bold px-3 py-1 tracking-wider z-10 border border-gray-700 max-w-[80%] truncate shadow-sm">
+                                <div class="absolute top-3 left-3 bg-dark text-white text-[10px] uppercase font-bold px-3 py-1 tracking-wider z-10 border border-gray-700 max-w-[70%] truncate shadow-sm">
                                     <?= htmlspecialchars($p['cat']) ?>
                                 </div>
                                 
                                 <!-- Imagen -->
                                 <div class="relative h-64 overflow-hidden bg-white flex items-center justify-center border-b border-gray-100">
-                                    <!-- Si la imagen falla desde el "tokyotunning-local.local" (no responde), el estilo .img-fallback CSS nativo podría usarse, pero simularemos confiando en el CSV -->
-                                    <img src="<?= htmlspecialchars($p['img']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                    <img src="<?= htmlspecialchars($p['img']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                         onerror="this.src='https://images.unsplash.com/photo-1600706432502-77a0e2e32729?w=500&q=80'">
                                 </div>
                                 
                                 <!-- Contenido -->
                                 <div class="p-5 flex-grow flex flex-col bg-white">
-                                    <h3 class="text-lg font-oswald font-bold text-dark group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2 leading-tight">
+                                    <h3 class="text-base font-oswald font-bold text-dark group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2 leading-tight">
                                         <?= htmlspecialchars($p['nombre']) ?>
                                     </h3>
-                                    <p class="text-gray-500 text-sm font-roboto mb-4 line-clamp-2 mt-auto">
+                                    <p class="text-gray-400 text-xs font-roboto mb-3 line-clamp-2">
                                         <?= htmlspecialchars($p['desc']) ?>
                                     </p>
-                                    <div class="flex justify-between items-center border-t border-gray-100 pt-4 mt-auto">
+                                    <div class="mt-auto border-t border-gray-100 pt-3">
                                         <span class="font-oswald font-bold text-2xl text-primary"><?= htmlspecialchars($p['precio_formateado']) ?></span>
                                     </div>
                                 </div>
                                 
-                                <!-- Simulación de Enlazar a Cotización SIN JS -->
-                                <a href="contacto.php?asunto=Cotizar%20Producto:%20<?= urlencode($p['nombre']) ?>" class="block w-full text-center py-3 bg-dark text-white font-oswald font-bold uppercase text-sm group-hover:bg-primary transition-colors duration-300">
-                                    Cotizar / Consultar Stock
+                                <!-- CTA WhatsApp -->
+                                <a href="https://wa.me/56935206018?text=Hola%20Tokyo%20Tunning!%20Quiero%20comprar%2Fconsultar:%20<?= rawurlencode($p['nombre']) ?>" target="_blank" rel="noopener"
+                                   class="flex items-center justify-center gap-2 w-full text-center py-3 bg-[#25D366] hover:bg-[#20c05c] text-white font-oswald font-bold uppercase text-sm transition-colors duration-300">
+                                    <i class="fa-brands fa-whatsapp"></i> Consultar / Comprar
                                 </a>
                             </div>
                         <?php endforeach; ?>

@@ -61,6 +61,21 @@ $current_page = $current_page ?? 'inicio';
 </head>
 <body class="bg-dark text-gray-100 flex flex-col min-h-screen">
 
+<!-- WhatsApp Floating Button -->
+<style>
+    @keyframes waPulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+        70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .wa-float { animation: waPulse 2s infinite; }
+</style>
+<a href="https://wa.me/56935206018?text=Hola%20Tokyo%20Tunning!%20Quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener"
+   class="wa-float fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300"
+   aria-label="Contactar por WhatsApp">
+    <i class="fa-brands fa-whatsapp text-white text-4xl"></i>
+</a>
+
 <!-- Header -->
 <header class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b-[3px] border-transparent" style="border-image: linear-gradient(to right, #C41E3A, #D4A847) 1;">
     <div class="container mx-auto px-4 lg:px-8">
@@ -76,14 +91,23 @@ $current_page = $current_page ?? 'inicio';
                 <a href="servicios.php" class="transition-smooth <?= $current_page == 'servicios' ? 'text-accent' : 'text-gray-300 hover:text-accent' ?>">SERVICIOS</a>
                 <a href="catalogo.php" class="transition-smooth <?= $current_page == 'catalogo' ? 'text-accent' : 'text-gray-300 hover:text-accent' ?>">CATÁLOGO</a>
                 <a href="contacto.php" class="transition-smooth <?= $current_page == 'contacto' ? 'text-accent' : 'text-gray-300 hover:text-accent' ?>">CONTACTO</a>
-                <a href="contacto.php" class="btn-primary px-6 py-2 ml-4">AGENDAR</a>
+                <a href="https://wa.me/56935206018?text=Hola%20Tokyo%20Tunning!%20Quiero%20agendar%20una%20visita%20al%20taller." target="_blank" rel="noopener" class="btn-primary px-6 py-2 ml-4 flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i>AGENDAR</a>
             </nav>
             
-            <!-- Mobile Menu Button (CSS Only) -->
-            <div class="md:hidden flex items-center">
-                <label for="mobile-menu-toggle" class="cursor-pointer text-gray-300 hover:text-accent transition-smooth">
-                    <i class="fa-solid fa-bars text-2xl"></i>
-                </label>
+            <!-- Mobile Menu & Actions -->
+            <div class="flex items-center gap-5">
+                <!-- Shopping Cart Placeholder -->
+                <a href="#" class="relative flex items-center justify-center text-gray-300 hover:text-accent transition-smooth md:hidden lg:flex" aria-label="Carrito de compras">
+                    <i class="fa-solid fa-cart-shopping text-[22px]"></i>
+                    <span class="absolute -top-1 -right-2 flex h-[16px] w-[16px] items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm border border-dark">0</span>
+                </a>
+
+                <!-- Mobile Menu Button (CSS Only) -->
+                <div class="md:hidden flex items-center">
+                    <label for="mobile-menu-toggle" class="cursor-pointer text-gray-300 hover:text-accent transition-smooth">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
@@ -97,7 +121,7 @@ $current_page = $current_page ?? 'inicio';
             <a href="catalogo.php" class="block py-3 px-4 <?= $current_page == 'catalogo' ? 'text-accent border-l-4 border-accent bg-gray-900' : 'text-gray-300 hover:bg-gray-900 border-l-4 border-transparent hover:border-accent' ?>">CATÁLOGO</a>
             <a href="contacto.php" class="block py-3 px-4 <?= $current_page == 'contacto' ? 'text-accent border-l-4 border-accent bg-gray-900' : 'text-gray-300 hover:bg-gray-900 border-l-4 border-transparent hover:border-accent' ?>">CONTACTO</a>
             <div class="pt-4 px-4">
-                <a href="contacto.php" class="btn-primary w-full py-3 block">AGENDAR CITA</a>
+                <a href="https://wa.me/56935206018?text=Hola%20Tokyo%20Tunning!%20Quiero%20agendar%20una%20visita%20al%20taller." target="_blank" rel="noopener" class="btn-primary w-full py-3 block flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp"></i>AGENDAR VÍA WHATSAPP</a>
             </div>
         </nav>
     </div>

@@ -18,30 +18,9 @@ include 'includes/header.php';
     </div>
 </section>
 
-<!-- 2. CONTENIDO (2 Columnas) -->
-<section class="py-24 bg-gray-50 text-dark relative">
-    <div class="container mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-primary font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Excelencia en Mantenimiento y Optimización Automotriz</p>
-                <h2 class="text-4xl md:text-5xl font-oswald font-bold mb-8 uppercase leading-tight">Su taller de confianza especializado en mecánica ágil y equipamiento.</h2>
-                <p class="mb-6">En Tokyo Tunning, gestionamos el cuidado de su vehículo con precisión técnica y un enfoque en la eficiencia. Nos especializamos en servicios de mantenimiento preventivo y mejoras estéticas, asegurando que cada intervención cumpla con los más altos estándares de calidad y seguridad.</p>
-                <ul class="list-disc pl-5 mb-6">
-                    <li><strong>Mantenimiento Preventivo:</strong> Cambio de aceite, sustitución de filtros y optimización del sistema de refrigeración.</li>
-                    <li><strong>Tren Delantero y Suspensión:</strong> Diagnóstico y reemplazo de bandejas, cazoletas y amortiguadores.</li>
-                    <li><strong>Seguridad Activa:</strong> Renovación de pastillas de freno y revisión integral de sistemas de frenado.</li>
-                    <li><strong>Dinámica de Conducción:</strong> Servicios especializados de alineación y balanceo computarizado.</li>
-                    <li><strong>Equipamiento de Confort:</strong> Venta e instalación de sistemas de audio y accesorios de personalización.</li>
-                </ul>
-                <p class="text-primary font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Trayectoria y Resultados</p>
-                <p class="text-lg font-roboto">3 Años de experiencia en el sector automotriz.</p>
-                <p class="text-lg font-roboto">+500 Proyectos finalizados con éxito.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- 2. CONTENIDO (2 Columnas) -->
+
+<!-- 2. INFORMACIÓN Y FORMULARIO -->
 <section class="py-20 bg-gray-50 relative -mt-10 z-20">
     <div class="container mx-auto px-4 lg:px-8">
         <div class="flex flex-col lg:flex-row gap-8">
@@ -63,8 +42,8 @@ include 'includes/header.php';
                             </div>
                             <div class="ml-4">
                                 <h3 class="font-oswald uppercase text-gray-400 text-sm tracking-wider mb-1">Horarios de Atención</h3>
-                                <p>Lunes - Viernes: 10:00 a 19:00 hrs</p>
-                                <p>Sábados: 10:00 a 14:00 hrs</p>
+                                <p>Lunes - Sábado: 10:00 a 19:00 hrs</p>
+                                <p class="text-accent text-sm mt-1"><i class="fa-solid fa-mug-hot mr-1"></i>Colación: 14:00 - 15:00 hrs</p>
                                 <p class="text-primary mt-1 text-sm">Domingos: Cerrado</p>
                             </div>
                         </div>
@@ -76,8 +55,8 @@ include 'includes/header.php';
                             </div>
                             <div class="ml-4">
                                 <h3 class="font-oswald uppercase text-gray-400 text-sm tracking-wider mb-1">Ubicación</h3>
-                                <p>Av. Principal 1234, Ciudad</p>
-                                <p>Sector Automotriz Industrial</p>
+                                <p>Santa Marta 0538</p>
+                                <p>San Bernardo, Región Metropolitana</p>
                             </div>
                         </div>
                         
@@ -88,7 +67,7 @@ include 'includes/header.php';
                             </div>
                             <div class="ml-4">
                                 <h3 class="font-oswald uppercase text-gray-400 text-sm tracking-wider mb-1">Llámanos</h3>
-                                <p class="text-xl font-oswald font-bold">+1 (234) 567-890</p>
+                                <a href="tel:+56935206018" class="text-xl font-oswald font-bold hover:text-accent transition-smooth">+56 9 3520 6018</a>
                             </div>
                         </div>
                         
@@ -99,7 +78,7 @@ include 'includes/header.php';
                             </div>
                             <div class="ml-4">
                                 <h3 class="font-oswald uppercase text-gray-400 text-sm tracking-wider mb-1">WhatsApp Ventas/Citas</h3>
-                                <a href="#" class="text-lg hover:text-accent transition-smooth">+1 (987) 654-321</a>
+                                <a href="https://wa.me/56935206018" target="_blank" rel="noopener" class="text-lg hover:text-accent transition-smooth">+56 9 3520 6018</a>
                             </div>
                         </div>
                         
@@ -110,7 +89,7 @@ include 'includes/header.php';
                             </div>
                             <div class="ml-4">
                                 <h3 class="font-oswald uppercase text-gray-400 text-sm tracking-wider mb-1">Correo Electrónico</h3>
-                                <a href="mailto:info@tokyotunning.com" class="hover:text-accent transition-smooth">info@tokyotunning.com</a>
+                                <a href="mailto:tokyotunning@gmail.com" class="hover:text-accent transition-smooth">tokyotunning@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -118,10 +97,10 @@ include 'includes/header.php';
                     <div class="mt-12 pt-8 border-t border-gray-800 relative z-10">
                         <h3 class="font-oswald uppercase text-gray-400 text-sm tracking-wider mb-4">Síguenos en Redes</h3>
                         <div class="flex space-x-4">
-                            <a href="#" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300 text-xl"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300 text-xl"><i class="fa-brands fa-tiktok"></i></a>
-                            <a href="#" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300 text-xl"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-[#FF0000] transition-colors duration-300 text-xl"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/tokyotunning" target="_blank" rel="noopener" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300 text-xl"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@tokyotunning" target="_blank" rel="noopener" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300 text-xl"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="https://www.facebook.com/tokyotunning" target="_blank" rel="noopener" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-primary transition-colors duration-300 text-xl"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://www.youtube.com/@tokyotunning" target="_blank" rel="noopener" class="bg-gray-800 w-12 h-12 flex items-center justify-center text-white hover:bg-[#FF0000] transition-colors duration-300 text-xl"><i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -188,12 +167,20 @@ include 'includes/header.php';
                         </div>
                         
                         <!-- Submit -->
-                        <div class="pt-2">
-                            <button type="submit" class="btn-primary w-full py-4 text-lg tracking-wider">
-                                ENVIAR MENSAJE <i class="fa-solid fa-paper-plane ml-2"></i>
-                            </button>
+                        <div class="pt-2 space-y-3">
+                            <?php
+                            $nombre_f = isset($_POST['nombre']) ? urlencode(trim($_POST['nombre'])) : '';
+                            $vehiculo_f = isset($_POST['vehiculo']) ? urlencode(trim($_POST['vehiculo'])) : '';
+                            $motivo_f = isset($_POST['motivo']) ? urlencode(trim($_POST['motivo'])) : '';
+                            $mensaje_f = isset($_POST['mensaje']) ? urlencode(trim($_POST['mensaje'])) : '';
+                            $wa_msg = urlencode("Hola Tokyo Tunning! Me llamo " . urldecode($nombre_f) . ". Vehículo: " . urldecode($vehiculo_f) . ". Motivo: " . urldecode($motivo_f) . ". " . urldecode($mensaje_f));
+                            ?>
+                            <a href="https://wa.me/56935206018?text=<?= $wa_msg ?>" target="_blank" rel="noopener"
+                               class="btn-primary w-full py-4 text-lg tracking-wider flex items-center justify-center gap-3">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i> ENVIAR VÍA WHATSAPP
+                            </a>
+                            <p class="text-xs text-gray-400 text-center">También puedes escribirnos directamente a <a href="mailto:tokyotunning@gmail.com" class="underline">tokyotunning@gmail.com</a></p>
                         </div>
-                        <p class="text-xs text-gray-400 text-center mt-4">Al enviar este formulario aceptas nuestra política de privacidad de datos.</p>
                     </form>
                     
                 </div>
@@ -219,8 +206,8 @@ include 'includes/header.php';
             </div>
         </div>
         
-        <!-- Iframe simulación map oscuro -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113426.35345717!2d-122.0911578351513!3d37.36932599781667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb68ad0cfc739%3A0x7eb356b66bd4b50e!2sSilicon%20Valley%2C%20CA%2C%20USA!5e0!3m2!1sen!2scl!4v1709230538237!5m2!1sen!2scl" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Mapa real: Santa Marta 0538, San Bernardo -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.704140307992!2d-70.69209870688826!3d-33.587030204584366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662d966a86eb8d1%3A0x669cffcf7322d975!2sAv.%20Sta.%20Marta%200538%2C%20San%20Bernardo%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1774323176397!5m2!1ses-419!2scl" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 

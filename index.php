@@ -1,471 +1,522 @@
 <?php
-$page_title = "Tokyo Tunning | Tuning Automotriz Premium";
+$page_title = "Tokyo Tunning | Tuning Automotriz Premium — San Bernardo";
+$page_description = "Taller de tuning automotriz premium en San Bernardo. Mecánica, suspensión, frenos, alarmas y catálogo de productos. Agenda por WhatsApp.";
 $current_page = "inicio";
 include 'includes/header.php';
 ?>
 
-<!-- 1. HERO SECTION (CARRUSEL CSS) -->
+<!-- TRUST BAR -->
 <style>
-    /* CSS Only Carousel */
-    .carousel-inner {
-        display: flex;
-        width: 300%;
-        transition: transform 0.8s ease-in-out;
-        animation: autoSlide 15s infinite;
-    }
-    
-    .carousel-inner:hover {
-        animation-play-state: paused;
-    }
-    
+@keyframes trustScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.trust-track { display: flex; animation: trustScroll 28s linear infinite; width: max-content; }
+.trust-track:hover { animation-play-state: paused; }
+@media (min-width: 768px) {
+    .trust-scroll-wrap { overflow: hidden; }
+    .trust-track { animation: none; width: 100%; justify-content: space-between; }
+}
+</style>
+<div class="bg-primary border-b border-primary/50 overflow-hidden">
+    <div class="trust-scroll-wrap py-2">
+        <div class="trust-track font-oswald text-white text-xs tracking-widest uppercase">
+            <!-- Items duplicated for seamless loop on mobile -->
+            <?php
+            $trust_items = [
+                ['fa-star', 'Especialistas en Tuning'],
+                ['fa-shield-halved', 'Garantía de Servicio'],
+                ['fa-whatsapp brands', 'Respuesta Inmediata'],
+            ];
+            $sep = '<span class="mx-5 text-white/30">|</span>';
+            $html = '';
+            foreach($trust_items as $item) {
+                $fa_class = strpos($item[0],'brands') !== false ? 'fa-brands fa-'.$item[0] : 'fa-solid fa-'.$item[0];
+                $html .= '<span class="flex items-center gap-2 shrink-0 px-4 md:px-0"><i class="'.$fa_class.' text-white/80 text-sm"></i>'.$item[1].'</span>'.$sep;
+            }
+            echo $html . $html; // duplicate for seamless loop
+            ?>
+        </div>
+    </div>
+</div>
+
+
+<!-- =============================================
+     1. HERO SECTION
+     ============================================= -->
+<style>
+    .carousel-inner { display:flex; width:300%; transition:transform 0.8s ease-in-out; animation:autoSlide 15s infinite; }
+    .carousel-inner:hover { animation-play-state:paused; }
     @keyframes autoSlide {
-        0%, 28% { transform: translateX(0%); }
-        33.33%, 61.33% { transform: translateX(-33.333333%); }
-        66.66%, 95% { transform: translateX(-66.666666%); }
-        100% { transform: translateX(0%); }
+        0%,28%{ transform:translateX(0%); }
+        33.33%,61.33%{ transform:translateX(-33.333333%); }
+        66.66%,95%{ transform:translateX(-66.666666%); }
+        100%{ transform:translateX(0%); }
     }
-    
-    .carousel-item {
-        width: 33.333333%;
-        position: relative;
-        flex-shrink: 0;
-    }
-    
-    #slide1:checked ~ .carousel-inner { transform: translateX(0%); }
-    #slide2:checked ~ .carousel-inner { transform: translateX(-33.333333%); }
-    #slide3:checked ~ .carousel-inner { transform: translateX(-66.666666%); }
-    
-    .carousel-nav-dot {
-        display: inline-block;
-        width: 14px;
-        height: 14px;
-        background-color: rgba(255,255,255,0.4);
-        border-radius: 50%;
-        margin: 0 6px;
-        cursor: pointer;
-        transition: all 0.3s;
-        border: 2px solid transparent;
-    }
+    .carousel-item { width:33.333333%; position:relative; flex-shrink:0; }
+    #slide1:checked ~ .carousel-inner { transform:translateX(0%); animation:none; }
+    #slide2:checked ~ .carousel-inner { transform:translateX(-33.333333%); animation:none; }
+    #slide3:checked ~ .carousel-inner { transform:translateX(-66.666666%); animation:none; }
+    .carousel-nav-dot { display:inline-block; width:12px; height:12px; background:rgba(255,255,255,0.3); border-radius:50%; margin:0 5px; cursor:pointer; transition:all 0.3s; border:2px solid transparent; }
     #slide1:checked ~ .carousel-nav label[for="slide1"],
     #slide2:checked ~ .carousel-nav label[for="slide2"],
-    #slide3:checked ~ .carousel-nav label[for="slide3"] {
-        background-color: #D4A847;
-        border-color: rgba(0,0,0,0.5);
-        transform: scale(1.2);
-    }
+    #slide3:checked ~ .carousel-nav label[for="slide3"] { background:#D4A847; border-color:rgba(0,0,0,0.5); transform:scale(1.3); }
 </style>
 
 <section class="relative h-screen overflow-hidden bg-dark text-left">
-    <!-- Controles de Radio Ocultos -->
     <input type="radio" name="slider" id="slide1" class="hidden" checked>
     <input type="radio" name="slider" id="slide2" class="hidden">
     <input type="radio" name="slider" id="slide3" class="hidden">
-    
-    <!-- Contenedor de Slides -->
+
     <div class="carousel-inner h-full">
-        
-        <!-- SLIDE 1: Taller -->
+
+        <!-- SLIDE 1 -->
         <div class="carousel-item h-full flex items-center justify-center">
             <div class="absolute inset-0 z-0">
                 <img src="assets/imgproductos/Una_Imagen_Cinematica_202603180209.png" alt="Taller Tokyo Tunning" class="w-full h-full object-cover object-center">
-                <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent"></div>
             </div>
-            
             <div class="container mx-auto px-4 lg:px-8 relative z-10 w-full">
-                <div class="max-w-3xl">
-                    <p class="text-accent font-oswald tracking-[0.3em] uppercase mb-4 font-bold text-sm md:text-base text-shadow">Taller Especializado Premium</p>
-                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-oswald font-bold text-white leading-tight mb-6 text-shadow-lg drop-shadow-lg">
-                        LLEVA TU <br>
-                        <span class="gradient-text">MÁQUINA</span> AL <br>
-                        LÍMITE
+                <div class="max-w-2xl">
+                    <p class="text-accent font-oswald tracking-[0.3em] uppercase mb-3 font-bold text-xs md:text-sm">Taller Especializado · San Bernardo</p>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-oswald font-bold text-white leading-tight mb-5 drop-shadow-lg">
+                        LLEVA TU <span class="gradient-text">MÁQUINA</span><br>AL LÍMITE
                     </h1>
-                    
-                    <ul class="flex flex-wrap items-center gap-4 text-gray-300 font-roboto mb-10 text-lg drop-shadow-md">
-                        <li class="flex items-center"><i class="fa-solid fa-bolt text-accent text-xs mr-2"></i> Performance</li>
-                        <li class="flex items-center"><i class="fa-solid fa-bolt text-accent text-xs mr-2"></i> Estética</li>
-                        <li class="flex items-center"><i class="fa-solid fa-bolt text-accent text-xs mr-2"></i> Mantenimiento</li>
-                    </ul>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="servicios.php" class="btn-primary py-4 px-8 text-lg w-full sm:w-auto shadow-2xl">Ver Servicios</a>
-                        <a href="catalogo.php" class="btn-outline py-4 px-8 text-lg w-full sm:w-auto shadow-2xl backdrop-blur-sm bg-black/20">Catálogo</a>
+                    <p class="text-gray-300 font-roboto mb-8 text-base md:text-lg max-w-xl">Performance · Estética · Mantenimiento Premium</p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="catalogo.php"
+                           class="flex items-center justify-center gap-2 btn-primary px-8 py-4 text-lg shadow-2xl transition-smooth hover:scale-105">
+                            <i class="fa-solid fa-bag-shopping text-xl"></i> VER CATÁLOGO
+                        </a>
+                        <a href="servicios.php" class="btn-outline py-4 px-8 text-lg w-full sm:w-auto shadow-2xl backdrop-blur-sm bg-black/20 text-center">Servicios y Precios</a>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- SLIDE 2: Amortiguador -->
+
+        <!-- SLIDE 2 -->
         <div class="carousel-item h-full flex items-center justify-center">
             <div class="absolute inset-0 z-0">
                 <img src="assets/imgproductos/Separa_el_amortiguador_202603180159.png" alt="Instalación Amortiguador" class="w-full h-full object-cover object-center">
                 <div class="absolute inset-0 bg-gradient-to-l from-black/80 via-black/50 to-transparent"></div>
             </div>
-            
-            <!-- Contenido alineado a la derecha en este slide para variar -->
             <div class="container mx-auto px-4 lg:px-8 relative z-10 w-full flex justify-end">
-                <div class="max-w-xl bg-black/60 backdrop-blur-md p-8 border-l-4 border-primary shadow-2xl">
+                <div class="max-w-xl bg-black/60 backdrop-blur-md p-6 md:p-8 border-l-4 border-primary shadow-2xl">
                     <p class="text-accent font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Suspensión Deportiva</p>
-                    <h2 class="text-4xl md:text-5xl font-oswald font-bold text-white leading-tight mb-4 uppercase text-shadow">
-                        Máximo <span class="text-primary">Control</span>
-                    </h2>
-                    <p class="text-gray-300 font-roboto mb-6 text-lg">Eleva el manejo de tu vehículo con nuestra selección top de amortiguadores y coilovers de alta resistencia.</p>
-                    
-                    <!-- Tarjeta Pequeña con el Precio -->
-                    <div class="bg-dark border border-gray-700 p-4 mb-6 flex justify-between items-center shadow-inner">
-                        <div>
-                            <span class="block text-white font-oswald text-lg font-bold uppercase">Upgrade Suspensión</span>
-                            <span class="text-gray-400 text-sm font-roboto"><i class="fa-solid fa-check text-accent mr-1"></i> Balance Perfecto</span>
-                        </div>
-                        <div class="text-right">
-                            <span class="block text-accent font-oswald text-3xl font-bold">$19.990</span>
-                            <span class="text-gray-500 font-roboto text-xs uppercase tracking-widest block">(Instalado)</span>
-                        </div>
+                    <h2 class="text-3xl md:text-5xl font-oswald font-bold text-white leading-tight mb-4 uppercase">Máximo <span class="text-primary">Control</span></h2>
+                    <p class="text-gray-300 font-roboto mb-6">Amortiguadores y coilovers de alta resistencia para una conducción precisa.</p>
+                    <div class="bg-dark border border-gray-700 p-4 mb-6 flex justify-between items-center">
+                        <span class="text-white font-oswald font-bold uppercase">Upgrade Suspensión</span>
+                        <span class="text-accent font-oswald text-3xl font-bold">$19.990</span>
                     </div>
-                    
-                    <a href="servicios.php#mantenimiento" class="btn-primary py-3 px-8 text-base w-full shadow-lg text-center">Agendar Trabajo</a>
+                    <a href="https://wa.me/56935206018?text=Hola!%20Quiero%20cotizar%20un%20upgrade%20de%20suspensi%C3%B3n." target="_blank" rel="noopener"
+                       class="flex items-center justify-center gap-2 bg-[#25D366] text-white font-oswald font-bold uppercase py-3 px-6 text-center w-full hover:bg-[#20c05c] transition-smooth">
+                        <i class="fa-brands fa-whatsapp"></i> Cotizar Ahora
+                    </a>
                 </div>
             </div>
         </div>
-        
-        <!-- SLIDE 3: Pastillas de Freno -->
+
+        <!-- SLIDE 3 -->
         <div class="carousel-item h-full flex items-center justify-center">
             <div class="absolute inset-0 z-0">
                 <img src="assets/imgproductos/De_las_pastillas_202603180229.png" alt="Kit Pastillas de Freno" class="w-full h-full object-cover object-center">
-                <div class="absolute inset-0 bg-black/60 backdrop-brightness-75"></div>
+                <div class="absolute inset-0 bg-black/60"></div>
             </div>
-            
-            <!-- Contenido centrado -->
             <div class="container mx-auto px-4 lg:px-8 relative z-10 w-full text-center">
-                <p class="text-primary font-oswald tracking-[0.3em] uppercase mb-4 font-bold md:text-lg text-shadow">Seguridad Activa</p>
-                <h2 class="text-5xl md:text-7xl lg:text-8xl font-oswald font-bold text-white leading-tight mb-6 text-shadow-xl drop-shadow-2xl">
-                    FRENADO DE <br>
-                    <span class="text-accent">COMPETICIÓN</span>
+                <p class="text-primary font-oswald tracking-[0.3em] uppercase mb-4 font-bold text-sm">Seguridad Activa</p>
+                <h2 class="text-4xl md:text-7xl font-oswald font-bold text-white leading-tight mb-6 drop-shadow-2xl">
+                    FRENADO DE <br><span class="text-accent">COMPETICIÓN</span>
                 </h2>
-                <p class="text-gray-200 font-roboto mb-10 text-xl max-w-2xl mx-auto drop-shadow-md">
-                    Pastillas de freno racing diseñadas para soportar altas temperaturas en pista y brindar seguridad absoluta en calle.
-                </p>
-                
                 <a href="catalogo.php" class="btn-primary py-4 px-12 text-xl shadow-2xl inline-block hover:scale-110">
-                    VER MÁS EN CATÁLOGO <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                    VER CATÁLOGO <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
                 </a>
             </div>
         </div>
-        
+
     </div>
-    
-    <!-- Navegación por puntos (Dots) -->
-    <div class="carousel-nav absolute bottom-10 left-0 right-0 z-20 flex justify-center items-center">
-        <label for="slide1" class="carousel-nav-dot" title="Taller Premium"></label>
-        <label for="slide2" class="carousel-nav-dot" title="Amortiguadores"></label>
-        <label for="slide3" class="carousel-nav-dot" title="Frenos Deportivos"></label>
+
+    <div class="carousel-nav absolute bottom-8 left-0 right-0 z-20 flex justify-center items-center">
+        <label for="slide1" class="carousel-nav-dot"></label>
+        <label for="slide2" class="carousel-nav-dot"></label>
+        <label for="slide3" class="carousel-nav-dot"></label>
     </div>
 </section>
 
-<!-- 2. INTRO -->
-<section class="py-24 bg-gray-50 text-dark relative">
+<!-- =============================================
+     2. WHY US — 4 ÍCONOS (reemplaza el bloque de texto largo)
+     ============================================= -->
+<section class="py-16 bg-gray-50 text-dark">
     <div class="container mx-auto px-4 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-primary font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Excelencia en Mantenimiento y Optimización Automotriz</p>
-                <h2 class="text-4xl md:text-5xl font-oswald font-bold mb-8 uppercase leading-tight">Su taller de confianza especializado</h2>
-                
-                <div class="space-y-6 font-roboto text-gray-600 text-lg">
-                    <p>
-                        En Tokyo Tunning, gestionamos el cuidado de su vehículo con precisión técnica y un enfoque en la eficiencia. Nos especializamos en servicios de mantenimiento preventivo y mejoras estéticas, asegurando que cada intervención cumpla con los más altos estándares de calidad y seguridad.
-                    </p>
-                    <ul class="list-disc pl-5 mb-6">
-                        <li><strong>Mantenimiento Preventivo:</strong> Cambio de aceite, sustitución de filtros y optimización del sistema de refrigeración.</li>
-                        <li><strong>Tren Delantero y Suspensión:</strong> Diagnóstico y reemplazo de bandejas, cazoletas y amortiguadores.</li>
-                        <li><strong>Seguridad Activa:</strong> Renovación de pastillas de freno y revisión integral de sistemas de frenado.</li>
-                        <li><strong>Dinámica de Conducción:</strong> Servicios especializados de alineación y balanceo computarizado.</li>
-                        <li><strong>Equipamiento de Confort:</strong> Venta e instalación de sistemas de audio y accesorios de personalización.</li>
-                    </ul>
+        <div class="text-center mb-10">
+            <p class="text-primary font-oswald tracking-[0.2em] uppercase font-bold text-sm mb-1">¿Por qué elegirnos?</p>
+            <h2 class="text-3xl md:text-4xl font-oswald font-bold uppercase">Tu Taller de <span class="text-primary">Confianza</span></h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="group bg-white p-6 shadow-sm hover:shadow-md transition-smooth border-b-4 border-transparent hover:border-primary">
+                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-smooth">
+                    <i class="fa-solid fa-wrench text-primary text-2xl"></i>
                 </div>
-                
-                <div class="mt-10 flex border-t-2 border-primary pt-8 gap-8">
-                    <div>
-                        <span class="block text-4xl font-oswald font-bold text-dark mb-1">3<span class="text-accent">Años</span></span>
-                        <span class="text-sm text-gray-500 font-roboto uppercase tracking-wider">Experiencia</span>
-                    </div>
-                    <div>
-                        <span class="block text-4xl font-oswald font-bold text-dark mb-1">+500</span>
-                        <span class="text-sm text-gray-500 font-roboto uppercase tracking-wider">Proyectos Finalizados</span>
-                    </div>
-                </div>
+                <h3 class="font-oswald font-bold text-xl uppercase mb-1">Mecánica Ágil</h3>
+                <p class="text-gray-500 font-roboto text-sm">Precios claros, piezas propias bienvenidas</p>
             </div>
-            
-            <div class="relative">
-                <div class="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-accent/20 z-0 transform rotate-3"></div>
-                <img src="assets/img/ambiente.jpg" alt="Taller Tokyo Tunning Interior" class="relative z-10 w-full h-auto object-cover shadow-2xl hover-grayscale">
+            <div class="group bg-white p-6 shadow-sm hover:shadow-md transition-smooth border-b-4 border-transparent hover:border-accent">
+                <div class="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-smooth">
+                    <i class="fa-solid fa-shield-halved text-accent text-2xl"></i>
+                </div>
+                <h3 class="font-oswald font-bold text-xl uppercase mb-1">Garantía de Trabajo</h3>
+                <p class="text-gray-500 font-roboto text-sm">Respaldamos cada servicio realizado</p>
+            </div>
+            <div class="group bg-white p-6 shadow-sm hover:shadow-md transition-smooth border-b-4 border-transparent hover:border-primary">
+                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-smooth">
+                    <i class="fa-brands fa-whatsapp text-primary text-2xl"></i>
+                </div>
+                <h3 class="font-oswald font-bold text-xl uppercase mb-1">Respuesta Inmediata</h3>
+                <p class="text-gray-500 font-roboto text-sm">Cotizamos por WhatsApp al instante</p>
+            </div>
+            <div class="group bg-white p-6 shadow-sm hover:shadow-md transition-smooth border-b-4 border-transparent hover:border-accent">
+                <div class="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-smooth">
+                    <i class="fa-solid fa-truck text-accent text-2xl"></i>
+                </div>
+                <h3 class="font-oswald font-bold text-xl uppercase mb-1">Despacho Nacional</h3>
+                <p class="text-gray-500 font-roboto text-sm">Enviamos productos a todo Chile</p>
+            </div>
+        </div>
+        <!-- Stats rápidos -->
+        <div class="mt-10 flex justify-center gap-10 border-t-2 border-primary pt-8">
+            <div class="text-center">
+                <span class="block text-4xl font-oswald font-bold text-dark">3<span class="text-accent">+</span></span>
+                <span class="text-xs text-gray-500 font-roboto uppercase tracking-wider">Años</span>
+            </div>
+            <div class="text-center">
+                <span class="block text-4xl font-oswald font-bold text-dark">+500</span>
+                <span class="text-xs text-gray-500 font-roboto uppercase tracking-wider">Proyectos</span>
+            </div>
+            <div class="text-center">
+                <span class="block text-4xl font-oswald font-bold text-dark">100<span class="text-primary">%</span></span>
+                <span class="text-xs text-gray-500 font-roboto uppercase tracking-wider">Compromiso</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 3. SERVICIOS/PRODUCTOS DESTACADOS -->
-<section class="py-24 bg-dark relative border-t-4 border-transparent" style="border-image: linear-gradient(to right, #C41E3A, #D4A847) 1;">
+<!-- =============================================
+     3. SERVICIOS DESTACADOS
+     ============================================= -->
+<section class="py-20 bg-dark relative border-t-4 border-transparent" style="border-image: linear-gradient(to right, #C41E3A, #D4A847) 1;">
     <div class="container mx-auto px-4 lg:px-8">
-        <div class="text-center mb-16">
+        <div class="text-center mb-12">
+            <p class="text-accent font-oswald tracking-[0.2em] uppercase font-bold text-sm mb-1">Lo que hacemos</p>
             <h2 class="text-4xl md:text-5xl font-oswald font-bold text-white mb-4 uppercase">Nuestra <span class="text-accent">Especialidad</span></h2>
-            <p class="text-gray-400 font-roboto text-lg max-w-2xl mx-auto">Servicios premium diseñados para entusiastas que exigen lo mejor.</p>
-            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-8"></div>
+            <div class="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto"></div>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <a href="servicios.php#accesorios" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="assets/img/servicio-1.jpg" alt="Instalación de Accesorios" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
-                    <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald z-10">ESTÉTICA</div>
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+
+            <!-- 1. CAMBIO DE ACEITE -->
+            <a href="servicios.php#aceite" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
+                <div class="relative h-48 md:h-64 overflow-hidden">
+                    <img src="assets/img/servicio-4.jpg" alt="Cambio de Aceite" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
+                    <div class="absolute top-3 right-3 bg-accent text-dark text-xs font-bold px-2 py-1 uppercase tracking-wider font-oswald">MANTENIMIENTO</div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-oswald font-bold text-white mb-3 group-hover:text-primary transition-smooth">Instalación de Accesorios</h3>
-                    <p class="text-gray-400 font-roboto text-sm">Aerodinámica, body kits, iluminación LED custom y accesorios exteriores de alta gama.</p>
-                </div>
-            </a>
-            
-            <!-- Card 2 -->
-            <a href="servicios.php#mantenimiento" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="assets/img/servicio-2.jpg" alt="Mantenimiento Tuning" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
-                    <div class="absolute top-4 right-4 bg-accent text-dark text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald z-10">PERFORMANCE</div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-oswald font-bold text-white mb-3 group-hover:text-primary transition-smooth">Mantenimiento</h3>
-                    <p class="text-gray-400 font-roboto text-sm">Ajustes de suspensión (simplemente no deportivas), coilovers y alineación.</p>
+                <div class="p-5 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-oswald font-bold text-white mb-1 group-hover:text-primary transition-smooth">Cambio de Aceite</h3>
+                        <p class="text-gray-400 font-roboto text-xs">Motor o caja. El cliente puede traer su propio aceite.</p>
+                    </div>
+                    <i class="fa-solid fa-oil-can text-gray-700 group-hover:text-primary transition-smooth text-lg mt-1 ml-3 shrink-0"></i>
                 </div>
             </a>
-            
-            <!-- Card 3 -->
-            <a href="servicios.php#frenos" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="assets/img/servicio-3.jpg" alt="Sistemas de Frenos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
-                    <div class="absolute top-4 right-4 bg-accent text-dark text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald z-10">SEGURIDAD</div>
+
+            <!-- 2. SCANNER Y DIAGNÓSTICO -->
+            <a href="servicios.php#diagnostico" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
+                <div class="relative h-48 md:h-64 overflow-hidden">
+                    <img src="assets/img/servicio-6.jpg" alt="Diagnóstico Scanner" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
+                    <div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 uppercase tracking-wider font-oswald">DIAGNÓSTICO</div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-oswald font-bold text-white mb-3 group-hover:text-primary transition-smooth">Sistemas de Frenos</h3>
-                    <p class="text-gray-400 font-roboto text-sm">Solo instalamos o cambiamos pastillas y discos de freno. También se pueden vender sin instalarse.</p>
-                </div>
-            </a>
-            
-            <!-- Card 4 -->
-            <a href="servicios.php#motor" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="assets/img/servicio-4.jpg" alt="Mantenimiento Motor" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
-                    <div class="absolute top-4 right-4 bg-accent text-dark text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald z-10">MANTENIMIENTO</div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-oswald font-bold text-white mb-3 group-hover:text-primary transition-smooth">Cambios de Aceite</h3>
-                    <p class="text-gray-400 font-roboto text-sm">Cambios de aceite rápidos y eficientes para mantener tu motor en excelentes condiciones.</p>
+                <div class="p-5 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-oswald font-bold text-white mb-1 group-hover:text-primary transition-smooth">Scanner y Diagnóstico</h3>
+                        <p class="text-gray-400 font-roboto text-xs">Lectura de fallas computarizada y revisión de tren delantero.</p>
+                    </div>
+                    <i class="fa-solid fa-laptop-code text-gray-700 group-hover:text-primary transition-smooth text-lg mt-1 ml-3 shrink-0"></i>
                 </div>
             </a>
-            
-            <!-- Card 5 -->
-            <a href="servicios.php#audio" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="assets/img/servicio-5.jpg" alt="Instalación de Audio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
-                    <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald z-10">INTERIOR</div>
+
+            <!-- 3. MECÁNICA Y REPUESTOS -->
+            <a href="servicios.php#mecanica" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
+                <div class="relative h-48 md:h-64 overflow-hidden">
+                    <img src="assets/img/servicio-2.jpg" alt="Mecánica y Repuestos" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
+                    <div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 uppercase tracking-wider font-oswald">MECÁNICA</div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-oswald font-bold text-white mb-3 group-hover:text-primary transition-smooth">Sistemas de Audio</h3>
-                    <p class="text-gray-400 font-roboto text-sm">Insonorización, cableado profesional, componentes, amplificadores y subwoofers a medida.</p>
-                </div>
-            </a>
-            
-            <!-- Card 6 -->
-            <a href="servicios.php#escape" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="assets/img/servicio-6.jpg" alt="Sistemas de Escape" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
-                    <div class="absolute top-4 right-4 bg-accent text-dark text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald z-10">PERFORMANCE</div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-2xl font-oswald font-bold text-white mb-3 group-hover:text-primary transition-smooth">Sistemas de Escape</h3>
-                    <p class="text-gray-400 font-roboto text-sm">Líneas completas, downpipes, escapes deportivos con válvulas y terminales custom.</p>
+                <div class="p-5 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-oswald font-bold text-white mb-1 group-hover:text-primary transition-smooth">Mecánica y Repuestos</h3>
+                        <p class="text-gray-400 font-roboto text-xs">Pastillas, bandejas, amortiguadores, embragues y más.</p>
+                    </div>
+                    <i class="fa-solid fa-wrench text-gray-700 group-hover:text-primary transition-smooth text-lg mt-1 ml-3 shrink-0"></i>
                 </div>
             </a>
+
+            <!-- 4. FRENOS Y SUSPENSIÓN -->
+            <a href="servicios.php#mecanica" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
+                <div class="relative h-48 md:h-64 overflow-hidden">
+                    <img src="assets/img/servicio-3.jpg" alt="Frenos y Suspensión" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
+                    <div class="absolute top-3 right-3 bg-accent text-dark text-xs font-bold px-2 py-1 uppercase tracking-wider font-oswald">SEGURIDAD</div>
+                </div>
+                <div class="p-5 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-oswald font-bold text-white mb-1 group-hover:text-primary transition-smooth">Frenos y Suspensión</h3>
+                        <p class="text-gray-400 font-roboto text-xs">Pastillas, purgación, balatas, cazoletas y bieletas.</p>
+                    </div>
+                    <i class="fa-solid fa-circle-dot text-gray-700 group-hover:text-primary transition-smooth text-lg mt-1 ml-3 shrink-0"></i>
+                </div>
+            </a>
+
+            <!-- 5. AUDIO Y ELECTRÓNICA -->
+            <a href="catalogo.php?cat=Audio%20y%20Electr%C3%B3nica" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-accent transition-smooth overflow-hidden">
+                <div class="relative h-48 md:h-64 overflow-hidden">
+                    <img src="assets/img/servicio-5.jpg" alt="Audio y Electrónica" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
+                    <div class="absolute top-3 right-3 bg-accent text-dark text-xs font-bold px-2 py-1 uppercase tracking-wider font-oswald">VER PRODUCTOS</div>
+                    <div class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-sm text-accent text-xs font-bold px-2 py-1 font-oswald uppercase border border-accent/30">
+                        <i class="fa-solid fa-bag-shopping mr-1"></i> 58+ Productos
+                    </div>
+                </div>
+                <div class="p-5 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-oswald font-bold text-white mb-1 group-hover:text-accent transition-smooth">Audio y Electrónica</h3>
+                        <p class="text-gray-400 font-roboto text-xs">Amplificadores, subwoofers, parlantes y accesorios.</p>
+                    </div>
+                    <i class="fa-solid fa-volume-high text-gray-700 group-hover:text-accent transition-smooth text-lg mt-1 ml-3 shrink-0"></i>
+                </div>
+            </a>
+
+            <!-- 6. ALARMAS E INSTALACIONES -->
+            <a href="servicios.php#electronica" class="group block bg-[#111] border-l-4 border-gray-800 hover:border-primary transition-smooth overflow-hidden">
+                <div class="relative h-48 md:h-64 overflow-hidden">
+                    <img src="assets/img/servicio-1.jpg" alt="Alarmas e Instalaciones" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 hover-grayscale">
+                    <div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 uppercase tracking-wider font-oswald">ELECTRÓNICA</div>
+                </div>
+                <div class="p-5 flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-oswald font-bold text-white mb-1 group-hover:text-primary transition-smooth">Alarmas e Instalaciones</h3>
+                        <p class="text-gray-400 font-roboto text-xs">Alarmas, cierre centralizado, corta corriente, cámaras.</p>
+                    </div>
+                    <i class="fa-solid fa-bolt text-gray-700 group-hover:text-primary transition-smooth text-lg mt-1 ml-3 shrink-0"></i>
+                </div>
+            </a>
+
         </div>
-        
-        <div class="text-center mt-12">
-            <a href="servicios.php" class="inline-flex items-center text-accent hover:text-white font-oswald font-bold uppercase tracking-widest transition-smooth">
-                Ver todos los servicios <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+        <div class="text-center mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="servicios.php" class="inline-flex items-center justify-center text-accent hover:text-white font-oswald font-bold uppercase tracking-widest transition-smooth border border-accent/30 hover:border-white px-6 py-3">
+                Ver todos los Servicios <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+            </a>
+            <a href="catalogo.php" class="inline-flex items-center justify-center bg-primary hover:bg-primary/80 text-white font-oswald font-bold uppercase tracking-widest transition-smooth px-6 py-3">
+                <i class="fa-solid fa-bag-shopping mr-2 text-sm"></i> Catálogo Completo
             </a>
         </div>
     </div>
 </section>
 
-<!-- 4. CATEGORÍAS DE PRODUCTOS (CARRUSEL) -->
+<!-- =============================================
+     4. CATEGORÍAS (CARRUSEL)
+     ============================================= -->
 <?php
-$categorias_data = [];
-$csvFile = __DIR__ . '/BD_Worpress/wc-product-export-18-3-2026-1773814320550.csv';
-if (file_exists($csvFile) && ($handle = fopen($csvFile, "r")) !== FALSE) {
-    $header = fgetcsv($handle, 10000, ",");
-    $idx_tipo = array_search('Tipo', $header);
-    $idx_categorias = array_search('Categorías', $header);
-    $idx_imagenes = array_search('Imágenes', $header);
-    
-    if ($idx_tipo !== false && $idx_categorias !== false && $idx_imagenes !== false) {
-        while (($data = fgetcsv($handle, 10000, ",")) !== FALSE) {
-            if (!isset($data[$idx_tipo])) continue;
-            $tipo = $data[$idx_tipo];
-            
-            if ($tipo === 'simple' || $tipo === 'variable') {
-                $catStr = $data[$idx_categorias] ?? '';
-                $cats = explode(',', $catStr);
-                $partes_cat = explode('>', $cats[0]);
-                $main_cat = trim(end($partes_cat));
-                if (empty($main_cat)) $main_cat = "General";
-                
-                if (!isset($categorias_data[$main_cat])) {
-                    $imgStr = $data[$idx_imagenes] ?? '';
-                    $imgs = explode(',', $imgStr);
-                    $img = trim($imgs[0] ?? '');
-                    if (empty($img)) {
-                        $img = "https://images.unsplash.com/photo-1600706432502-77a0e2e32729?w=500&q=80"; 
-                    }
-                    $categorias_data[$main_cat] = [
-                        'nombre' => $main_cat,
-                        'imagen' => $img,
-                        'count' => 1
-                    ];
-                } else {
-                    $categorias_data[$main_cat]['count']++;
-                }
-            }
-        }
-    }
-    fclose($handle);
-}
-// Ordenar por popularidad (cantidad de productos)
-uasort($categorias_data, function($a, $b) {
-    return $b['count'] <=> $a['count'];
-});
-// Solo tomar las primeras 8 para el carrusel
-$categorias_carousel = array_slice($categorias_data, 0, 8);
+// Categorías fijas curadas — imágenes reales, nombres claros para el cliente
+$categorias_fijas = [
+    ['nombre' => 'Audio y Electrónica',  'slug' => 'Audio y Electrónica',  'img' => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', 'label' => 'Amplif. · Radios · Accesorios'],
+    ['nombre' => 'Parlantes',            'slug' => 'Parlantes',             'img' => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&q=80', 'label' => 'Coaxiales · Componentes'],
+    ['nombre' => 'Subwoofer',            'slug' => 'Subwoofer',             'img' => 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&q=80', 'label' => 'Cajas · Subwoofers sueltos'],
+    ['nombre' => 'Volantes',             'slug' => 'Volantes',              'img' => 'https://images.unsplash.com/photo-1597007066704-67bf2068d5b2?w=600&q=80', 'label' => 'Deportivos · Cuero · Racing'],
+    ['nombre' => 'Alerones y Estética',  'slug' => 'Alerones',              'img' => 'https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=600&q=80', 'label' => 'Body Kit · Alerones · Spoilers'],
+    ['nombre' => 'Pomos de Cambio',      'slug' => 'Pomos',                 'img' => 'https://images.unsplash.com/photo-1565538420870-da08ff96a207?w=600&q=80', 'label' => 'Cortos · Racing · Aluminio'],
+    ['nombre' => 'Vinilos y Adhesivos',  'slug' => 'Vinilos',               'img' => 'https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=600&q=80', 'label' => 'Racing · Carbono · Decorativos'],
+    ['nombre' => 'Frenos y Suspensión',  'slug' => 'Pastillas de freno',    'img' => 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80', 'label' => 'Pastillas · Discos · Liquido'],
+];
 ?>
-<section class="py-24 bg-white text-dark overflow-hidden relative border-t border-gray-100">
+<section class="py-20 bg-white text-dark overflow-hidden relative border-t border-gray-100">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
-    <div class="container mx-auto px-4 lg:px-8 mb-12 text-center relative z-10">
-        <p class="text-primary font-oswald tracking-[0.2em] uppercase mb-2 font-bold text-sm">Explora Nuestro Inventario</p>
-        <h2 class="text-4xl md:text-5xl font-oswald font-bold uppercase leading-tight">
-            Categorías de <span class="text-primary">Productos</span>
-        </h2>
+    <div class="container mx-auto px-4 lg:px-8 mb-10 text-center relative z-10">
+        <p class="text-primary font-oswald tracking-[0.2em] uppercase font-bold text-sm mb-1">Explora Nuestro Inventario</p>
+        <h2 class="text-4xl md:text-5xl font-oswald font-bold uppercase">Categorías de <span class="text-primary">Productos</span></h2>
     </div>
-
-    <!-- Carrusel CSS Snap -->
-    <style>
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-    
+    <style>.hide-scrollbar::-webkit-scrollbar{display:none;}.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}</style>
     <div class="container mx-auto px-4 lg:px-8 relative z-10">
-        <div class="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory hide-scrollbar group/slider">
-            <?php foreach($categorias_carousel as $cat): ?>
-                <!-- Tarjeta de Categoría -->
-                <a href="catalogo.php?cat=<?= urlencode($cat['nombre']) ?>" class="snap-start shrink-0 w-[85vw] md:w-[45vw] lg:w-[28vw] group block relative h-[400px] bg-dark overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500 rounded-sm">
-                    <!-- Imagen de fondo extraida del producto -->
-                    <img src="<?= htmlspecialchars($cat['imagen']) ?>" alt="<?= htmlspecialchars($cat['nombre']) ?>" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700 hover-grayscale">
-                    
-                    <!-- Superposición gradiente -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    
-                    <!-- Contenido de la Tarjeta -->
-                    <div class="absolute inset-0 p-8 flex flex-col justify-end text-white z-10">
-                        <span class="inline-block bg-primary text-white text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald mb-3 self-start"><?= $cat['count'] ?> PRODUCTOS</span>
-                        <h3 class="text-3xl font-oswald font-bold mb-2 uppercase group-hover:text-accent transition-colors duration-300"><?= htmlspecialchars($cat['nombre']) ?></h3>
-                        <div class="flex items-center text-sm font-oswald tracking-widest uppercase text-gray-300 group-hover:text-white transition-colors duration-300">
-                            Explorar <i class="fa-solid fa-arrow-right ml-2 text-primary group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </div>
+        <div class="flex overflow-x-auto gap-5 pb-10 snap-x snap-mandatory hide-scrollbar">
+            <?php foreach($categorias_fijas as $cat): ?>
+            <a href="catalogo.php?cat=<?= urlencode($cat['slug']) ?>" class="snap-start shrink-0 w-[80vw] md:w-[42vw] lg:w-[22vw] group block relative h-[340px] bg-dark overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500">
+                <img src="<?= htmlspecialchars($cat['img']) ?>" alt="<?= htmlspecialchars($cat['nombre']) ?>" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 p-6 flex flex-col justify-end text-white z-10">
+                    <span class="inline-block bg-primary/80 text-white text-xs font-bold px-3 py-1 uppercase tracking-wider font-oswald mb-2 self-start"><?= htmlspecialchars($cat['label']) ?></span>
+                    <h3 class="text-xl font-oswald font-bold mb-1 uppercase group-hover:text-accent transition-colors duration-300"><?= htmlspecialchars($cat['nombre']) ?></h3>
+                    <div class="flex items-center text-sm font-oswald tracking-widest uppercase text-gray-300 group-hover:text-white transition-colors">
+                        Explorar <i class="fa-solid fa-arrow-right ml-2 text-primary group-hover:translate-x-2 transition-transform duration-300"></i>
                     </div>
-                </a>
+                </div>
+            </a>
             <?php endforeach; ?>
-            
-            <!-- Tarjeta Final: Ver Todo -->
-            <a href="catalogo.php" class="snap-start shrink-0 w-[85vw] md:w-[45vw] lg:w-[28vw] group block relative h-[400px] bg-primary overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500 rounded-sm flex items-center justify-center text-center">
+            <a href="catalogo.php" class="snap-start shrink-0 w-[80vw] md:w-[42vw] lg:w-[22vw] group block relative h-[340px] bg-primary overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500 flex items-center justify-center text-center">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
                 <div class="relative z-10 p-8">
-                    <i class="fa-solid fa-boxes-stacked text-6xl text-white/50 mb-6 group-hover:scale-110 transition-transform duration-500"></i>
-                    <h3 class="text-4xl font-oswald font-bold text-white uppercase mb-4 text-shadow-md">VER TODO EL<br>CATÁLOGO</h3>
-                    <div class="inline-block bg-dark text-white text-sm font-bold px-6 py-3 uppercase tracking-wider font-oswald group-hover:bg-white group-hover:text-primary transition-colors duration-300 shadow-xl">
+                    <i class="fa-solid fa-boxes-stacked text-5xl text-white/50 mb-5 group-hover:scale-110 transition-transform duration-500"></i>
+                    <h3 class="text-3xl font-oswald font-bold text-white uppercase mb-4">VER TODO EL<br>CATÁLOGO</h3>
+                    <div class="inline-block bg-dark text-white text-sm font-bold px-6 py-3 uppercase tracking-wider font-oswald group-hover:bg-white group-hover:text-primary transition-colors duration-300">
                         Ingresar <i class="fa-solid fa-chevron-right ml-1"></i>
                     </div>
                 </div>
             </a>
         </div>
-        
-        <div class="flex justify-center mt-[-20px] mb-8 text-gray-400 gap-2 items-center mobile-hint lg:hidden">
+        <div class="flex justify-center mt-[-16px] mb-4 text-gray-400 gap-2 items-center lg:hidden">
             <i class="fa-solid fa-arrows-left-right text-xs"></i>
             <span class="font-roboto text-xs uppercase tracking-widest">Deslizar para ver más</span>
         </div>
     </div>
 </section>
 
-<!-- 5. CTA BANNER -->
-<section class="py-32 relative flex items-center justify-center">
+<!-- =============================================
+     5. CTA WhatsApp BANNER
+     ============================================= -->
+<section class="py-24 relative flex items-center justify-center">
     <div class="absolute inset-0 z-0">
-        <img src="assets/img/cta.jpg" alt="Atmosfera Tuning" class="w-full h-full object-cover object-center">
+        <img src="assets/img/cta.jpg" alt="Agenda tu visita" class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
         <div class="absolute inset-0 bg-black/60"></div>
     </div>
-    
     <div class="relative z-10 text-center container mx-auto px-4">
-        <h2 class="text-4xl md:text-6xl font-oswald font-bold text-white mb-6 uppercase tracking-wider text-shadow-lg drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+        <p class="text-accent font-oswald tracking-[0.3em] uppercase mb-3 font-bold text-sm">Taller en San Bernardo · Lun–Sáb 10–19 hrs</p>
+        <h2 class="text-4xl md:text-6xl font-oswald font-bold text-white mb-6 uppercase tracking-wider drop-shadow-lg">
             ¿Listo para destacar?
         </h2>
-        <p class="text-xl text-gray-200 font-roboto mb-10 max-w-2xl mx-auto drop-shadow-md">
-            Agenda tu visita o contáctanos para cotizar tu próximo proyecto. El límite lo pones tú.
+        <p class="text-lg text-gray-200 font-roboto mb-10 max-w-xl mx-auto">
+            Escríbenos y un asesor te cotiza sin compromiso. Respuesta inmediata.
         </p>
-        <a href="contacto.php" class="btn-primary py-4 px-10 text-xl shadow-2xl">COTIZAR PROYECTO</a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://wa.me/56935206018?text=Hola%20Tokyo%20Tunning!%20Quiero%20cotizar%20un%20proyecto." target="_blank" rel="noopener"
+               class="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20c05c] text-white font-oswald font-bold uppercase px-10 py-4 text-xl shadow-2xl transition-smooth hover:scale-105">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> COTIZAR POR WHATSAPP
+            </a>
+            <a href="contacto.php" class="btn-outline py-4 px-10 text-xl shadow-2xl">
+                Formulario de Contacto
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- 6. SOCIAL / GALERÍA -->
-<section class="py-20 bg-dark">
+<!-- =============================================
+     6. TESTIMONIOS / RESEÑAS
+     ============================================= -->
+<section class="py-20 bg-gray-50 text-dark">
     <div class="container mx-auto px-4 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-oswald font-bold text-white flex items-center justify-center uppercase tracking-widest">
-                <i class="fa-brands fa-instagram text-accent mr-3"></i> @TOKYOTUNNING
-            </h2>
+            <p class="text-primary font-oswald tracking-[0.2em] uppercase font-bold text-sm mb-1">Lo que dicen nuestros clientes</p>
+            <h2 class="text-4xl font-oswald font-bold uppercase">Lo que dicen de <span class="text-primary">nosotros</span></h2>
         </div>
-        
+        <?php
+        $reviews = [
+            ['nombre'=>'Matías O.','vehiculo'=>'Suzuki Swift Sport','texto'=>'Dejé mi auto el martes por un crujido agudo en la rueda. En 15 min me mostraron la cazoleta rota y en 3 hrs me lo entregaron con repuesto nuevo. Sin inflar presupuesto, directos al grano.','stars'=>5,'badge'=>'Suspensión'],
+            ['nombre'=>'Francisca L.','vehiculo'=>'Nissan Sentra','texto'=>'Agendé cierre centralizado. Llegué a las 11:00 y a las 14:00 estaba listo. El cableado no se nota por ningún lado, usaron cinta de tela original y el interior quedó soplado sin mugre.','stars'=>5,'badge'=>'Electrónica'],
+            ['nombre'=>'Tomás A.','vehiculo'=>'Mazda 3 2019','texto'=>'Fui por el Pack Estándar de aceite Shell HX7. En 40 minutos literal le cambiaron aceite, filtro, y revisaron niveles de cortesía sin sorpresas en la boleta. Rápidos y transparentes.','stars'=>5,'badge'=>'Aceite'],
+            ['nombre'=>'Javier C.','vehiculo'=>'Toyota Yaris','texto'=>'Compré un subwoofer por WhatsApp un miércoles; el jueves en la tarde me lo estaban instalando. Ocultaron todos los cables del amplificador bajo la alfombra como de fábrica. Sonido demoledor.','stars'=>5,'badge'=>'Audio'],
+        ];
+        ?>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <?php foreach($reviews as $r): ?>
+            <div class="bg-white p-6 shadow-sm border-t-4 border-primary hover:shadow-md transition-smooth flex flex-col">
+                <div class="flex text-accent mb-3">
+                    <?php for($i=0;$i<$r['stars'];$i++) echo '<i class="fa-solid fa-star text-sm"></i>'; ?>
+                </div>
+                <p class="text-gray-600 font-roboto text-sm mb-5 flex-grow italic">"<?= $r['texto'] ?>"</p>
+                <div class="border-t border-gray-100 pt-4 flex items-center justify-between">
+                    <div>
+                        <span class="font-oswald font-bold text-dark block"><?= $r['nombre'] ?></span>
+                        <span class="text-gray-400 font-roboto text-xs"><?= $r['vehiculo'] ?></span>
+                    </div>
+                    <span class="bg-primary/10 text-primary text-xs font-bold font-oswald px-2 py-1 uppercase"><?= $r['badge'] ?></span>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     7. INSTAGRAM / REELS
+     ============================================= -->
+<section class="py-16 bg-dark">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="text-center mb-10">
+            <a href="https://www.instagram.com/tokyotunning" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-3 text-2xl md:text-3xl font-oswald font-bold text-white uppercase tracking-widest hover:text-accent transition-smooth group">
+                <i class="fa-brands fa-instagram text-accent group-hover:scale-110 transition-transform"></i>
+                @TOKYOTUNNING
+                <i class="fa-solid fa-arrow-up-right-from-square text-sm text-gray-500 group-hover:text-accent transition-smooth"></i>
+            </a>
+            <p class="text-gray-500 font-roboto text-sm mt-2">Síguenos para ver nuestros últimos trabajos y productos</p>
+        </div>
+        <?php
+        $reels = [
+            ['img'=>'assets/img/social-1.jpg','url'=>'https://www.instagram.com/tokyotunning/reel/DWHiwxHCiyj/'],
+            ['img'=>'assets/img/social-2.jpg','url'=>'https://www.instagram.com/tokyotunning/reel/DVeAEKjigfT/'],
+            ['img'=>'assets/img/social-3.jpg','url'=>'https://www.instagram.com/tokyotunning/reel/DVYynIIClp8/'],
+            ['img'=>'assets/img/social-4.jpg','url'=>'https://www.instagram.com/tokyotunning/reel/DVjHns1CgsM/'],
+            ['img'=>'assets/img/social-5.jpg','url'=>'https://www.instagram.com/tokyotunning/reel/DV3rhNTik0a/'],
+            ['img'=>'assets/img/social-6.jpg','url'=>'https://www.instagram.com/tokyotunning/reel/DVq1EjWiq1_/'],
+        ];
+        ?>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+            <?php foreach($reels as $reel): ?>
             <div class="relative aspect-square group overflow-hidden">
-                <img src="assets/img/social-1.jpg" alt="Instagram post" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
-                <a href="#" class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                <img src="<?= $reel['img'] ?>" alt="Reel Tokyo Tunning" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
+                <!-- Overlay con logo REEL y botón -->
+                <a href="<?= $reel['url'] ?>" target="_blank" rel="noopener"
+                   class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <i class="fa-brands fa-instagram text-white text-4xl mb-2"></i>
+                    <span class="text-white font-oswald text-xs uppercase tracking-widest">Ver Reel</span>
                 </a>
+                <!-- Badge REEL siempre visible en mobile -->
+                <div class="absolute top-2 left-2 bg-gradient-to-r from-[#833ab4] to-[#fd1d1d] text-white text-[10px] font-bold font-oswald px-2 py-0.5 uppercase tracking-wider flex items-center gap-1">
+                    <i class="fa-brands fa-instagram text-[10px]"></i> REEL
+                </div>
             </div>
-            <div class="relative aspect-square group overflow-hidden">
-                <img src="assets/img/social-2.jpg" alt="Instagram post" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
-                <a href="#" class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                </a>
-            </div>
-            <div class="relative aspect-square group overflow-hidden">
-                <img src="assets/img/social-3.jpg" alt="Instagram post" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
-                <a href="#" class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                </a>
-            </div>
-            <div class="relative aspect-square group overflow-hidden">
-                <img src="assets/img/social-4.jpg" alt="Instagram post" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
-                <a href="#" class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                </a>
-            </div>
-            <div class="relative aspect-square group overflow-hidden">
-                <img src="assets/img/social-5.jpg" alt="Instagram post" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
-                <a href="#" class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                </a>
-            </div>
-            <div class="relative aspect-square group overflow-hidden">
-                <img src="assets/img/social-6.jpg" alt="Instagram post" class="w-full h-full object-cover hover-grayscale transition-all duration-500">
-                <a href="#" class="absolute inset-0 bg-primary/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                </a>
-            </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="text-center mt-8">
+            <a href="https://www.instagram.com/tokyotunning" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 border border-gray-700 text-gray-400 hover:border-accent hover:text-accent font-oswald uppercase tracking-widest px-6 py-3 text-sm transition-smooth">
+                <i class="fa-brands fa-instagram"></i> Ver más en Instagram
+            </a>
         </div>
     </div>
 </section>
 
 <?php include 'includes/footer.php'; ?>
+
+<script>
+// ── Category Carousel Autoplay ───────────────────────────────────
+(function() {
+    var el = document.querySelector('.hide-scrollbar');
+    if (!el) return;
+    var speed = 0.6;   // px per frame
+    var paused = false;
+    var raf;
+
+    function step() {
+        if (!paused) {
+            el.scrollLeft += speed;
+            // Seamless loop: when we reach 50% width, jump back to 0
+            if (el.scrollLeft >= el.scrollWidth / 2) {
+                el.scrollLeft = 0;
+            }
+        }
+        raf = requestAnimationFrame(step);
+    }
+
+    el.addEventListener('mouseenter', function() { paused = true; });
+    el.addEventListener('mouseleave', function() { paused = false; });
+    el.addEventListener('touchstart', function() { paused = true; }, { passive: true });
+    el.addEventListener('touchend',   function() { setTimeout(function(){ paused = false; }, 2000); }, { passive: true });
+
+    raf = requestAnimationFrame(step);
+})();
+</script>
+
